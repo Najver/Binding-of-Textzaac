@@ -35,11 +35,13 @@ public class Map {
             this.rooms = rooms;
             String[] s = stringBuilder.toString().split("\n");
             for (int i = 0; i < s.length; i++) {
+                if (s[i].isBlank())
+                    throw new WrongMapFormatException("Part of the map has blank space \nMap:\n" + stringBuilder);
                 generateRoomInRow(s[i],rooms,i);
             }
             printMap();
         }
-        catch (IOException ioException)
+        catch (IOException ignored)
         {
 
         }
@@ -55,8 +57,8 @@ public class Map {
     }
     private void printMap(){
         StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < rooms.length; i++) {
-            builder.append(Arrays.toString(rooms[i])).append("\n");
+        for (Room[] room : rooms) {
+            builder.append(Arrays.toString(room)).append("\n");
         }
         System.out.println(builder);
     }
