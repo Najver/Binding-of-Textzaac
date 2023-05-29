@@ -1,3 +1,5 @@
+package game;
+
 import java.util.List;
 
 public class Room {
@@ -14,5 +16,9 @@ public class Room {
     @Override
     public String toString() {
         return name;
+    }
+
+    public List<Item> getItems() {
+        return items;
     }
 }

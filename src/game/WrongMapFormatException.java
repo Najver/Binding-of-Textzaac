@@ -1,3 +1,5 @@
+package game;
+
 public class WrongMapFormatException extends RuntimeException
 {
     public WrongMapFormatException(String message) {

@@ -1,3 +1,5 @@
+package game;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -36,7 +38,7 @@ public class Map {
             String[] s = stringBuilder.toString().split("\n");
             for (int i = 0; i < s.length; i++) {
                 if (s[i].isBlank())
-                    throw new WrongMapFormatException("Part of the map has blank space \nMap:\n" + stringBuilder);
+                    throw new WrongMapFormatException("Part of the map has blank space \ngame.Map:\n" + stringBuilder);
                 generateRoomInRow(s[i],rooms,i);
             }
             printMap();
@@ -51,7 +53,7 @@ public class Map {
        char[] charsInString = s.toCharArray();
         for (int i = 0; i < charsInString.length; i++) {
             if(charsInString[i] == '+'){
-                rooms[rowIndex][i] = new Room("Room" + (i + 1));
+                rooms[rowIndex][i] = new Room("game.Room" + (i + 1));
             }
         }
     }
