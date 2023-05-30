@@ -54,8 +54,13 @@ public class Map {
     private void generateRoomInRow(String s,Room[][] rooms,int rowIndex){
        char[] charsInString = s.toCharArray();
         for (int i = 0; i < charsInString.length; i++) {
-            if(charsInString[i] == '+'){
-                rooms[rowIndex][i] = new Room("game.Room" + (i + 1));
+            switch (charsInString[i])
+            {
+                case '*' -> rooms[rowIndex][i] = null;
+                case '+' -> rooms[rowIndex][i] = new Room("Room" + (i + 1));
+                case '-' -> rooms[rowIndex][i] = new Spawn("Spawn");
+                case '$' -> rooms[rowIndex][i] = new Shop("Shop");
+                default -> System.err.println("Invalid map char");
             }
         }
     }
