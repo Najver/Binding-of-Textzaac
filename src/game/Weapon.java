@@ -16,6 +16,6 @@ public class Weapon extends Item{
 
     @Override
     public String toString() {
-        return name +": ad =" + ad + ", ap=" + ap + ", bonusMana=" + bonusMana + ", bonusHp=" + bonusHp;
+        return name +": ad:" + ad + ", ap:" + ap + ", bonusMana:" + bonusMana + ", bonusHp:" + bonusHp;
     }
 }

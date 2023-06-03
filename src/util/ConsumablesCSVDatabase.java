@@ -1,0 +1,34 @@
+package util;
+
+import game.Consumable;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ConsumablesCSVDatabase {
+
+    public static List<Consumable> getConsumable(){
+        ArrayList<Consumable> consumables = new ArrayList<>();
+        try(BufferedReader bufferedReader = new BufferedReader(new FileReader("Consumables.csv"))){
+            String line;
+            while ((line = bufferedReader.readLine()) != null){
+                String[] args = line.split(";");
+                Consumable consumable = createConsumable(args);
+                consumables.add(consumable);
+            }
+        }catch(IOException e) {
+            System.err.println("ConsumableCSVDatabase error: Could not load file");
+        }
+        return consumables;
+    }
+
+    private static Consumable createConsumable(String[] args){
+        String name = args[0];
+        int returnHp = Integer.parseInt(args[1]);
+        int returnMana = Integer.parseInt(args[2]);
+        return new Consumable(name, returnHp, returnMana);
+    }
+}
