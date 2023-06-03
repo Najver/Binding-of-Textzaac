@@ -29,6 +29,8 @@ public class Consumable extends Item{
 
     @Override
     public String toString() {
+        if(returnHp == -1 || returnMana == -1)
+            return super.toString();
         return name + ": addHp:" + returnHp + ", addMana:" + returnMana;
     }
 }

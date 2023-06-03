@@ -1,6 +1,6 @@
 package main;
 
-import game.comandmanager.CollectAction;
+import game.comandmanager.room.CollectAction;
 import game.comandmanager.CommandActions;
 
 import java.util.HashMap;
