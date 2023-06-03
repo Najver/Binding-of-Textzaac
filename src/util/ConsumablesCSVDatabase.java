@@ -17,6 +17,8 @@ public class ConsumablesCSVDatabase {
             while ((line = bufferedReader.readLine()) != null){
                 String[] args = line.split(";");
                 Consumable consumable = createConsumable(args);
+                if(consumable.getReturnHp() == -1 || consumable.getReturnMana() == -1)
+                    continue;
                 consumables.add(consumable);
             }
         }catch(IOException e) {
@@ -30,5 +32,21 @@ public class ConsumablesCSVDatabase {
         int returnHp = Integer.parseInt(args[1]);
         int returnMana = Integer.parseInt(args[2]);
         return new Consumable(name, returnHp, returnMana);
+    }
+
+    public static List<Consumable> getSpecial(){
+        ArrayList<Consumable> consumables = new ArrayList<>();
+        try(BufferedReader bufferedReader = new BufferedReader(new FileReader("Consumables.csv"))){
+            String line;
+            while ((line = bufferedReader.readLine()) != null){
+                String[] args = line.split(";");
+                Consumable consumable = createConsumable(args);
+                if(consumable.getReturnHp() == -1 || consumable.getReturnMana() == -1)
+                    consumables.add(consumable);
+            }
+        }catch(IOException e) {
+            System.err.println("ConsumableCSVDatabase error: Could not load file");
+        }
+        return consumables;
     }
 }
