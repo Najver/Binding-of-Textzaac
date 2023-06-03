@@ -3,9 +3,6 @@ package game.comandmanager.room;
 import game.Item;
 import game.Player;
 import game.Room;
-import game.comandmanager.CommandActions;
-
-import java.util.List;
 
 public class CollectAction implements CommandActions {
     @Override

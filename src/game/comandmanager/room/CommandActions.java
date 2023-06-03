@@ -1,4 +1,4 @@
-package game.comandmanager;
+package game.comandmanager.room;
 
 import game.Item;
 import game.Player;
