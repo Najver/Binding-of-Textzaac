@@ -1,6 +1,6 @@
 package util;
 
-import game.Weapon;
+import items.Weapon;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
