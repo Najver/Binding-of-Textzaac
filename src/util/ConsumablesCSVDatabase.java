@@ -1,6 +1,6 @@
 package util;
 
-import game.Consumable;
+import items.Consumable;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

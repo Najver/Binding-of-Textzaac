@@ -1,10 +1,7 @@
 package game.comandmanager.shop;
 
-import game.Item;
-import game.Player;
-import game.Shop;
-
-import java.util.List;
+import characters.Player;
+import structure.Shop;
 
 public interface ShopAction {
 

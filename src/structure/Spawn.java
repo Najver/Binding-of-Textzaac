@@ -1,4 +1,4 @@
-package game;
+package structure;
 
 public class Spawn extends Room{
 

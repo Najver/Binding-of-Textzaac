@@ -1,4 +1,4 @@
-package game;
+package structure;
 
 import util.WrongMapFormatException;
 
@@ -7,18 +7,24 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
 
-public class Map {
+public class MapLevel {
+
     private Room[][] rooms;
 
-    public Map()
+    private int[] playerCurrentCoordinates;
+
+    private Room spawnRoom;
+
+    public MapLevel(String nameOfTheMap)
     {
-        this.rooms = loadRoomsFromFile();
+        this.playerCurrentCoordinates = new int[2];
+        this.rooms = loadRoomsFromFile(nameOfTheMap);
     }
 
-    private Room[][] loadRoomsFromFile()
+    private Room[][] loadRoomsFromFile(String nameOfTheMap)
     {
         Room[][] rooms = null;
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader("FrozenDungeon.maap")))
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(nameOfTheMap + ".maap")))
         {
             StringBuilder stringBuilder = new StringBuilder();
             int numberOfCollumns = 0;
@@ -40,7 +46,7 @@ public class Map {
             String[] s = stringBuilder.toString().split("\n");
             for (int i = 0; i < s.length; i++) {
                 if (s[i].isBlank())
-                    throw new WrongMapFormatException("Part of the map has blank space \ngame.Map:\n" + stringBuilder);
+                    throw new WrongMapFormatException("Part of the map has blank space \nstructure.Map:\n" + stringBuilder);
                 generateRoomInRow(s[i],rooms,i);
             }
             printMap();
@@ -57,9 +63,15 @@ public class Map {
             switch (charsInString[i])
             {
                 case '*' -> rooms[rowIndex][i] = null;
-                case '+' -> rooms[rowIndex][i] = new Room("Room" + (i + 1));
-                case '-' -> rooms[rowIndex][i] = new Spawn("Spawn");
-                case '$' -> rooms[rowIndex][i] = new Shop("Shop");
+                case '+' -> rooms[rowIndex][i] = new Room("Room" + (i + 1), rowIndex, i);
+                case '$' -> rooms[rowIndex][i] = new Shop("Shop", rowIndex, i);
+                case '-' -> {
+                    Room spawn = new Spawn("Spawn", rowIndex, i);
+                    rooms[rowIndex][i] = spawn;
+                    playerCurrentCoordinates[0] = rowIndex;
+                    playerCurrentCoordinates[1] = i;
+                    this.spawnRoom = spawn;
+                }
                 default -> System.err.println("Invalid map char");
             }
         }
@@ -70,5 +82,17 @@ public class Map {
             builder.append(Arrays.toString(room)).append("\n");
         }
         System.out.println(builder);
+    }
+
+    public void setPlayerCurrentCoordinates(int playerCurrentCoordinatesX, int playerCurrentCoordinatesY) {
+        playerCurrentCoordinates[0] = playerCurrentCoordinatesX;
+        playerCurrentCoordinates[1] = playerCurrentCoordinatesY;
+    }
+    public Room getSpawn()
+    {
+        return spawnRoom;
+    }
+    public Room[][] getRooms() {
+        return rooms;
     }
 }

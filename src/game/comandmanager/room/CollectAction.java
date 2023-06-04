@@ -1,8 +1,8 @@
 package game.comandmanager.room;
 
-import game.Item;
-import game.Player;
-import game.Room;
+import items.Item;
+import characters.Player;
+import structure.MapLevel;
 
 public class CollectAction implements CommandActions {
     @Override

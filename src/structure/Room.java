@@ -1,4 +1,8 @@
-package game;
+package structure;
+
+import characters.Entities;
+import characters.Player;
+import items.Item;
 
 import java.util.List;
 
@@ -7,7 +11,16 @@ public class Room {
 
     private List<Item> items;
 
-    private String name;
+    protected String name;
+    protected Player player;
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
 
     public Room(String name){
         this.name = name;

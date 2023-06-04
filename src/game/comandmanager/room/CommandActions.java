@@ -1,10 +1,7 @@
 package game.comandmanager.room;
 
-import game.Item;
-import game.Player;
-import game.Room;
-
-import java.util.List;
+import characters.Player;
+import structure.MapLevel;
 
 public interface CommandActions {
 

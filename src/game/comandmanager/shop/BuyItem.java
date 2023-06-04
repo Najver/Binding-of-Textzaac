@@ -1,9 +1,8 @@
 package game.comandmanager.shop;
 
-import game.Item;
-import game.Player;
-import game.Room;
-import game.Shop;
+import items.Item;
+import characters.Player;
+import structure.Shop;
 
 
 public class BuyItem implements ShopAction {

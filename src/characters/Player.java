@@ -1,4 +1,8 @@
-package game;
+package characters;
+
+import items.Item;
+import structure.MapLevel;
+import structure.Room;
 
 import java.util.ArrayList;
 
