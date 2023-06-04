@@ -1,9 +1,12 @@
 package main;
 
-import game.Map;
+import structure.Shop;
 
 public class Main {
     public static void main(String[] args) {
-        Map map = new Map();
-     }
+        Game game = new Game("Arnošt");
+        game.startGame();
+    }
+
+
 }
