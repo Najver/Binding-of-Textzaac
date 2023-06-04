@@ -15,12 +15,13 @@ public class Player {
     private Room curentRoom;
 
 
-    public Player(String name) {
+    public Player(String name, MapLevel level) {
         this.name = name;
         this.hp = 100;
         this.mana = 50;
         this.coins = 30;            // sebrat
         this.playerInventory = new ArrayList<>();
+        this.curentRoom = level.getSpawn();
     }
 
     public int getHp() {

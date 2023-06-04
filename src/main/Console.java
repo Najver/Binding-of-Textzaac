@@ -8,16 +8,24 @@ import structure.MapLevel;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
+
 
 public class Console {
+
+
     private String buffer;
+
+    private Scanner scanner;
 
     private static Map<String, CommandActions> commands;
 
 
     public Console() {
+        this.scanner = new Scanner(System.in);
         commands = new HashMap<>();
-        commands.put("Collect", new CollectAction());
+        commands.put("collect", new CollectAction());
+        commands.put("go", new MovementAction());
     }
 
     public void startGame(Game game) {

@@ -6,11 +6,11 @@ import structure.MapLevel;
 
 public class CollectAction implements CommandActions {
     @Override
-    public void execute(String parameter, Player player, Room room) {
-        for (Item item:room.getItems()) {
+    public void execute(String parameter, Player player, MapLevel mapLevel) {
+        for (Item item : player.getCurentRoom().getItems()) {
             if(item.getName().equals(parameter)){
                 player.getPlayerInventory().add(item); //Capsule
-                room.getItems().remove(item);
+                player.getCurentRoom().getItems().remove(item);
                 return;
             }
         }

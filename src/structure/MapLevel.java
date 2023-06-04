@@ -49,7 +49,7 @@ public class MapLevel {
                     throw new WrongMapFormatException("Part of the map has blank space \nstructure.Map:\n" + stringBuilder);
                 generateRoomInRow(s[i],rooms,i);
             }
-            printMap();
+            /*printMap();*/
         }
         catch (IOException ignored)
         {
@@ -76,7 +76,7 @@ public class MapLevel {
             }
         }
     }
-    private void printMap(){
+    public void printMap(){
         StringBuilder builder = new StringBuilder();
         for (Room[] room : rooms) {
             builder.append(Arrays.toString(room)).append("\n");

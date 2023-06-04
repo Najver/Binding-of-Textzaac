@@ -11,6 +11,8 @@ public class Room {
 
     private List<Item> items;
 
+    private int[] indices;
+
     protected String name;
     protected Player player;
 
@@ -22,8 +24,9 @@ public class Room {
         this.player = player;
     }
 
-    public Room(String name){
+    public Room(String name, int x, int y){
         this.name = name;
+        this.indices = new int[] {x, y};
     }
 
     @Override
@@ -33,5 +36,9 @@ public class Room {
 
     public List<Item> getItems() {
         return items;
+    }
+
+    public int[] getIndices() {
+        return indices;
     }
 }

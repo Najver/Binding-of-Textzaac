@@ -5,6 +5,6 @@ import structure.MapLevel;
 
 public interface CommandActions {
 
-    void execute(String parameter, Player player, Room room);
+    void execute(String parameter, Player player, MapLevel mapLevel);
 
 }
