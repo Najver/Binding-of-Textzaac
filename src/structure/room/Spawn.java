@@ -1,4 +1,4 @@
-package structure;
+package structure.room;
 
 public class Spawn extends Room{
 

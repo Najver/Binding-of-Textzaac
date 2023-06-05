@@ -1,4 +1,4 @@
-package structure;
+package structure.room;
 
 import characters.Player;
 import game.comandmanager.shop.BuyItem;

@@ -1,8 +1,11 @@
 package characters;
 
+import items.Consumable;
 import items.Item;
+import items.Weapon;
+import main.Console;
 import structure.MapLevel;
-import structure.Room;
+import structure.room.Room;
 
 import java.util.ArrayList;
 

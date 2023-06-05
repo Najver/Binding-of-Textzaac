@@ -2,7 +2,7 @@ package game.comandmanager.shop;
 
 import items.Item;
 import characters.Player;
-import structure.Shop;
+import structure.room.Shop;
 
 
 public class BuyItem implements ShopAction {

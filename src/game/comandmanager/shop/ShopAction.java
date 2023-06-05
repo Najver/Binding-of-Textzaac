@@ -1,7 +1,7 @@
 package game.comandmanager.shop;
 
 import characters.Player;
-import structure.Shop;
+import structure.room.Shop;
 
 public interface ShopAction {
 

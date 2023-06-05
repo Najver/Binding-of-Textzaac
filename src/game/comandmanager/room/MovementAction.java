@@ -3,7 +3,7 @@ package game.comandmanager.room;
 import characters.Movement;
 import characters.Player;
 import structure.MapLevel;
-import structure.Room;
+import structure.room.Room;
 
 public class MovementAction implements CommandActions{
 
