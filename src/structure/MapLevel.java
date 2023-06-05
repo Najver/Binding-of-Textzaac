@@ -1,5 +1,12 @@
 package structure;
 
+import characters.Entity;
+import characters.Player;
+import game.Combat;
+import structure.room.BossRoom;
+import structure.room.Room;
+import structure.room.Shop;
+import structure.room.Spawn;
 import util.WrongMapFormatException;
 
 import java.io.BufferedReader;
@@ -70,13 +77,8 @@ public class MapLevel {
                 case '*' -> rooms[rowIndex][i] = null;
                 case '+' -> rooms[rowIndex][i] = new Room("Room" + (i + 1), rowIndex, i);
                 case '$' -> rooms[rowIndex][i] = new Shop("Shop", rowIndex, i);
-                case '-' -> {
-                    Room spawn = new Spawn("Spawn", rowIndex, i);
-                    rooms[rowIndex][i] = spawn;
-                    playerCurrentCoordinates[0] = rowIndex;
-                    playerCurrentCoordinates[1] = i;
-                    this.spawnRoom = spawn;
-                }
+                case '@' -> initiateBossRoom(rooms, new BossRoom("BossRoom", rowIndex, i), rowIndex, i);
+                case '-' -> initiateSpawn(rooms, new Spawn("Spawn", rowIndex, i), rowIndex, i);
                 default -> System.err.println("Invalid map char");
             }
         }
