@@ -56,6 +56,34 @@ public class Player {
         return playerInventory;
     }
 
+    public ArrayList<Weapon> getAllPlayersWeapons()
+    {
+        ArrayList<Weapon> weapons = new ArrayList<>();
+        for (Item item : playerInventory) {
+            Weapon weapon;
+            try {
+                weapon = (Weapon) item;
+                weapons.add(weapon);
+            }
+            catch (ClassCastException ignored) {}
+        }
+        return weapons;
+    }
+
+    public ArrayList<Consumable> getAllPlayersConsumables()
+    {
+        ArrayList<Consumable> weapons = new ArrayList<>();
+        for (Item item : playerInventory) {
+            Consumable consumable;
+            try {
+                consumable = (Consumable) item;
+                weapons.add(consumable);
+            }
+            catch (ClassCastException ignored) {}
+        }
+        return weapons;
+    }
+
     public String getName() {
         return name;
     }

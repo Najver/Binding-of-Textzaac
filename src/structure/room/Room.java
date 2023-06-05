@@ -1,13 +1,13 @@
 package structure;
 
-import characters.Entities;
+import characters.Entity;
 import characters.Player;
 import items.Item;
 
 import java.util.List;
 
 public class Room {
-    private List<Entities> enemies;
+    private Entity enemies;
 
     private List<Item> items;
 
@@ -27,6 +27,10 @@ public class Room {
     public Room(String name, int x, int y){
         this.name = name;
         this.indices = new int[] {x, y};
+    }
+
+    public Entity getEnemy() {
+        return enemies;
     }
 
     @Override

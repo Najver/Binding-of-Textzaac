@@ -47,6 +47,6 @@ public class MovementAction implements CommandActions{
     {
         int mapXMax = allRooms.length;
         int mapYMax = allRooms[0].length;
-        return (x < mapXMax && x > -1) || (y < mapYMax && y > -1);
+        return (x < mapXMax && x > -1) && (y < mapYMax && y > -1);
     }
 }

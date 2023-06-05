@@ -15,10 +15,15 @@ public class MapLevel {
 
     private Room spawnRoom;
 
+    private Room bossRoom;
+
+    private boolean isBossAlive;
+
     public MapLevel(String nameOfTheMap)
     {
         this.playerCurrentCoordinates = new int[2];
         this.rooms = loadRoomsFromFile(nameOfTheMap);
+        this.isBossAlive = true;
     }
 
     private Room[][] loadRoomsFromFile(String nameOfTheMap)
@@ -57,7 +62,7 @@ public class MapLevel {
         }
         return rooms;
     }
-    private void generateRoomInRow(String s,Room[][] rooms,int rowIndex){
+    private void generateRoomInRow(String s, Room[][] rooms,int rowIndex){
        char[] charsInString = s.toCharArray();
         for (int i = 0; i < charsInString.length; i++) {
             switch (charsInString[i])
@@ -76,6 +81,7 @@ public class MapLevel {
             }
         }
     }
+
     public void printMap(){
         StringBuilder builder = new StringBuilder();
         for (Room[] room : rooms) {
@@ -84,15 +90,39 @@ public class MapLevel {
         System.out.println(builder);
     }
 
+    public void startBossFight(Player player, Entity enemy)
+    {
+        Combat.startCombat(player, enemy);
+    }
+
+    public void openShop(Player player, Shop room)
+    {
+        room.openShop(player);
+    }
+
     public void setPlayerCurrentCoordinates(int playerCurrentCoordinatesX, int playerCurrentCoordinatesY) {
         playerCurrentCoordinates[0] = playerCurrentCoordinatesX;
         playerCurrentCoordinates[1] = playerCurrentCoordinatesY;
     }
-    public Room getSpawn()
+    private void initiateSpawn(Room[][] map, Room spawn, int rowIndex, int i) {
+        map[rowIndex][i] = spawn;
+        playerCurrentCoordinates[0] = rowIndex;
+        playerCurrentCoordinates[1] = i;
+        this.spawnRoom = spawn;
+    }
+    private void initiateBossRoom(Room[][] map, BossRoom bossRoom, int rowIndex, int i)
     {
+        map[rowIndex][i] = bossRoom;
+        this.bossRoom = bossRoom;
+    }
+    public Room getSpawn() {
         return spawnRoom;
     }
     public Room[][] getRooms() {
         return rooms;
+    }
+
+    public boolean isBossAlive() {
+        return isBossAlive;
     }
 }

@@ -17,9 +17,10 @@ public class Game {
 
     public Game(String nameOfThePlayer)
     {
+        MapLevel SmallMap = new MapLevel("SmallMap");
         MapLevel FrozenDungeon = new MapLevel("FrozenDungeon");
 
-        this.allLevels = List.of(FrozenDungeon);
+        this.allLevels = List.of(SmallMap, FrozenDungeon);
         this.currentActiveMap = 0;
         this.console = new Console();
         this.player = new Player(nameOfThePlayer, allLevels.get(currentActiveMap));

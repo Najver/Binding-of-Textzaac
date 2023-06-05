@@ -24,11 +24,6 @@ public class Shop extends Room{
 
     public Shop(String name, int x, int y) {
         super(name, x, y);
-        //
-/*
-        player = new Player("cerny");                   // test
-*/
-        //
         this.map = new HashMap<>();
         map.put("buy",new BuyItem());
         this.random = new Random();
@@ -42,7 +37,8 @@ public class Shop extends Room{
         items = new Item[]{itemWeapon, itemConsumable, itemSpecial};
     }
 
-    public void openShop(){
+    public void openShop(Player player){
+        this.player = player;
         System.out.println("Hello i have 3 items you can buy");
         showAllItems();
         System.out.println("Do you wanna buy something?");
