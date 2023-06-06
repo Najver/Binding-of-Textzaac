@@ -1,5 +1,9 @@
-Crying Lady;15;15
-Living Failure;50;10
-Krug;60;5
-Undead seer;20;8
-Corupted mage;25;20
+Crying Lady;15;15;false
+Living Failure;50;10;false
+Krug;60;5;false
+Undead seer;20;8;false
+Corupted mage;25;20;false
+Golem;150;10;true
+Dragon;100;20;true
+Goblin King;100;15;true
+Slave Master;120;12;true
