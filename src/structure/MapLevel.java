@@ -36,7 +36,7 @@ public class MapLevel {
     private Room[][] loadRoomsFromFile(String nameOfTheMap)
     {
         Room[][] rooms = null;
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(nameOfTheMap + ".maap")))
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader("resources/" + nameOfTheMap + ".maap")))
         {
             StringBuilder stringBuilder = new StringBuilder();
             int numberOfCollumns = 0;

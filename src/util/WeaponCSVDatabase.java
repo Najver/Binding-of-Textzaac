@@ -12,7 +12,7 @@ public class WeaponCSVDatabase {
 
     public static List<Weapon> getWeapons(){
         ArrayList<Weapon> weapons = new ArrayList<>();
-        try(BufferedReader bufferedReader = new BufferedReader(new FileReader("Weapons.csv"))){
+        try(BufferedReader bufferedReader = new BufferedReader(new FileReader("resources/Weapons.csv"))){
             String line;
             while ((line = bufferedReader.readLine()) != null){
                 String[] args = line.split(";");

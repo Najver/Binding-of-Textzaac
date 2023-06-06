@@ -12,7 +12,7 @@ public class ConsumablesCSVDatabase {
 
     public static List<Consumable> getConsumable(){
         ArrayList<Consumable> consumables = new ArrayList<>();
-        try(BufferedReader bufferedReader = new BufferedReader(new FileReader("Consumables.csv"))){
+        try(BufferedReader bufferedReader = new BufferedReader(new FileReader("resources/Consumables.csv"))){
             String line;
             while ((line = bufferedReader.readLine()) != null){
                 String[] args = line.split(";");
@@ -36,7 +36,7 @@ public class ConsumablesCSVDatabase {
 
     public static List<Consumable> getSpecial(){
         ArrayList<Consumable> consumables = new ArrayList<>();
-        try(BufferedReader bufferedReader = new BufferedReader(new FileReader("Consumables.csv"))){
+        try(BufferedReader bufferedReader = new BufferedReader(new FileReader("resources/Consumables.csv"))){
             String line;
             while ((line = bufferedReader.readLine()) != null){
                 String[] args = line.split(";");
