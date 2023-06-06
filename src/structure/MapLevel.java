@@ -1,5 +1,6 @@
 package structure;
 
+import characters.Boss;
 import characters.Entity;
 import characters.Player;
 import game.Combat;
@@ -7,12 +8,15 @@ import structure.room.BossRoom;
 import structure.room.Room;
 import structure.room.Shop;
 import structure.room.Spawn;
+import util.EntityCSVDatabase;
 import util.WrongMapFormatException;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 public class MapLevel {
 
@@ -77,7 +81,7 @@ public class MapLevel {
                 case '*' -> rooms[rowIndex][i] = null;
                 case '+' -> rooms[rowIndex][i] = new Room("Room" + (i + 1), rowIndex, i);
                 case '$' -> rooms[rowIndex][i] = new Shop("Shop", rowIndex, i);
-                case '@' -> initiateBossRoom(rooms, new BossRoom("BossRoom", rowIndex, i), rowIndex, i);
+                case '@' -> initiateBossRoom(rooms, new BossRoom("BossRoom", rowIndex, i, createBoss()), rowIndex, i);
                 case '-' -> initiateSpawn(rooms, new Spawn("Spawn", rowIndex, i), rowIndex, i);
                 default -> System.err.println("Invalid map char");
             }
@@ -92,9 +96,17 @@ public class MapLevel {
         System.out.println(builder);
     }
 
-    public void startBossFight(Player player, Entity enemy)
+    public boolean startBossFight(Player player, Entity enemy)
     {
-        Combat.startCombat(player, enemy);
+        boolean hasPlayerWon = Combat.startCombat(player, enemy);
+        if (hasPlayerWon)
+        {
+            isBossAlive = false;
+            System.out.println("You have defeated this boss! You can move to next map!");
+            return true;
+        }
+        System.out.println("You have died, you have to start over :(");
+        return false;
     }
 
     public void openShop(Player player, Shop room)
@@ -116,6 +128,12 @@ public class MapLevel {
     {
         map[rowIndex][i] = bossRoom;
         this.bossRoom = bossRoom;
+    }
+
+    private Boss createBoss()
+    {
+        List<Boss> bosses = EntityCSVDatabase.getAllBosses();
+        return bosses.get(new Random().nextInt(bosses.size()));
     }
     public Room getSpawn() {
         return spawnRoom;

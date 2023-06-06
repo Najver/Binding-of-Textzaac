@@ -7,7 +7,7 @@ import items.Item;
 import java.util.List;
 
 public class Room {
-    private Entity enemies;
+    private Entity enemy;
 
     private List<Item> items;
 
@@ -29,8 +29,12 @@ public class Room {
         this.indices = new int[] {x, y};
     }
 
+    public void setEnemy(Entity enemy){
+        this.enemy = enemy;
+    }
+
     public Entity getEnemy() {
-        return enemies;
+        return enemy;
     }
 
     @Override

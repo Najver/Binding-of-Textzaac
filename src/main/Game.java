@@ -39,6 +39,10 @@ public class Game {
         return player;
     }
 
+    public void setCurrentActiveMap(int currentActiveMap) {
+        this.currentActiveMap = currentActiveMap;
+    }
+
     public int getCurrentActiveMap() {
         return currentActiveMap;
     }

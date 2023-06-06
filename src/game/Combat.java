@@ -27,11 +27,12 @@ public class Combat {
     public static boolean startCombat(Player player, Entity enemy)
     {
         System.out.println("Welcome to the cumbat\n\nRules are simple, you attack, then your opponent attacks, until one of you dies. Fight!");
+        System.out.println("You are fighting against " + enemy.getName());
         return proceedCombat(player, enemy);
     }
 
     private static boolean proceedCombat(Player player, Entity enemy) {
-        int playerADamage = 5 + countRemainingDamage(player, 0);
+        int playerADamage = 10 + countRemainingDamage(player, 0);
         int playerAPDamage = countRemainingDamage(player, 1);
         while (player.getHp() > 0 && enemy.getHp() > 0)
         {

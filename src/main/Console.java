@@ -37,15 +37,22 @@ public class Console {
         System.out.println("You are currently at: " + game.getPlayer().getCurentRoom());
         while (game.getAllLevels().get(currentActiveMapIndex).isBossAlive())
         {
+            currentActiveMapIndex = game.getCurrentActiveMap();
             buffer = scanner.nextLine();
             processCommand(buffer, game.getAllLevels().get(currentActiveMapIndex), game.getPlayer());
             System.out.println("You are currently at: " + game.getPlayer().getCurentRoom());
             buffer = "";
             if (game.getPlayer().getCurentRoom() instanceof Shop)
                 game.getAllLevels().get(currentActiveMapIndex).openShop(game.getPlayer(), (Shop) game.getPlayer().getCurentRoom());
-            if (game.getPlayer().getCurentRoom() instanceof BossRoom)
-                game.getAllLevels().get(currentActiveMapIndex).startBossFight(game.getPlayer(), game.getPlayer().getCurentRoom().getEnemy());
+            if (game.getPlayer().getCurentRoom() instanceof BossRoom && game.getAllLevels().get(currentActiveMapIndex).isBossAlive())
+            {
+                boolean playerWon = game.getAllLevels().get(currentActiveMapIndex).startBossFight(game.getPlayer(), game.getPlayer().getCurentRoom().getEnemy());
+                if (playerWon) {
+                    moveToNextRoom(game, game.getPlayer(),currentActiveMapIndex);
+                    currentActiveMapIndex += 1;
+                }
 
+            }
         }
     }
 
@@ -63,6 +70,14 @@ public class Console {
     private void showMap(MapLevel mapLevel)
     {
         mapLevel.printMap();
+    }
+
+    private void moveToNextRoom(Game game, Player player, int currentIndex) {
+        game.setCurrentActiveMap(currentIndex + 1);
+        System.out.println("You have moved to the next room");
+        MapLevel newMap = game.getAllLevels().get(game.getCurrentActiveMap());
+        showMap(newMap);
+        player.setCurentRoom(newMap.getSpawn());
     }
 
     public static Map<String, CommandActions> getCommands() {
