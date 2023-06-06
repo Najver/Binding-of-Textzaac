@@ -5,7 +5,6 @@ import characters.Player;
 import game.comandmanager.combat.AttackAction;
 import game.comandmanager.combat.CombatAction;
 import game.comandmanager.combat.UseConsumableAction;
-import items.Item;
 import items.Weapon;
 
 import java.util.HashMap;
@@ -34,8 +33,11 @@ public class Combat {
     private static boolean proceedCombat(Player player, Entity enemy) {
         int playerADamage = 10 + countRemainingDamage(player, 0);
         int playerAPDamage = countRemainingDamage(player, 1);
+        player.setMaxHp(countRemainingBonus(player)[0]);
+        player.setMaxMana(countRemainingBonus(player)[1]);
         while (player.getHp() > 0 && enemy.getHp() > 0)
         {
+            System.out.println("You have " + player.getHp());
             System.out.println("What do you do?\nYou have this consumables: " + player.getAllPlayersConsumables() +
                     "\nYour damage is: AD = " + playerADamage + ", AP = " + playerAPDamage);
             processCommand(player, enemy, playerADamage, playerAPDamage);
@@ -65,6 +67,18 @@ public class Combat {
                 additionalDamage += weapon.getAp();
         }
         return additionalDamage;
+    }
+
+    private static int[] countRemainingBonus(Player player)
+    {
+        int[] bonus = {0, 0};
+        for (Weapon weapon : player.getAllPlayersWeapons()) {
+            bonus[0] += weapon.getBonusHp();
+            bonus[1] += weapon.getBonusMana();
+            player.setHp(player.getHp() + weapon.getBonusHp());
+            player.setMana(player.getMana() + weapon.getBonusMana());
+        }
+        return bonus;
     }
 
 }

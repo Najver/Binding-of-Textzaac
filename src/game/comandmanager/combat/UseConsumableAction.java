@@ -16,8 +16,10 @@ public class UseConsumableAction implements CombatAction{
             {
                 int recoverHP = consumable.getReturnHp();
                 int recoverMana = consumable.getReturnMana();
-                player.setHp(player.getHp() + recoverHP);
-                player.setMana(player.getMana() + recoverMana);
+                if (!player.setHp(player.getHp() + recoverHP))
+                    System.out.println("You cannot heal yourself more!");
+                if (!player.setMana(player.getMana() + recoverMana))
+                    System.out.println("You cannot heal yourself more!");
                 foundItem = true;
             }
         }

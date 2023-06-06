@@ -3,7 +3,6 @@ package characters;
 import items.Consumable;
 import items.Item;
 import items.Weapon;
-import main.Console;
 import structure.MapLevel;
 import structure.room.Room;
 
@@ -14,6 +13,9 @@ public class Player {
     private int hp;
     private int mana;
     private int coins;
+
+    private int maxMana;
+    private int maxHp;
     private ArrayList<Item> playerInventory;
     private Room curentRoom;
 
@@ -22,6 +24,8 @@ public class Player {
         this.name = name;
         this.hp = 100;
         this.mana = 50;
+        this.maxHp = 100;
+        this.maxMana = 50;
         this.coins = 30;            // sebrat
         this.playerInventory = new ArrayList<>();
         this.curentRoom = level.getSpawn();
@@ -31,16 +35,26 @@ public class Player {
         return hp;
     }
 
-    public void setHp(int hp) {
-        this.hp = hp;
+    public boolean setHp(int hp) {
+        if (!(this.hp + hp >= maxHp))
+        {
+            this.hp = hp;
+            return true;
+        }
+        return false;
     }
 
     public int getMana() {
         return mana;
     }
 
-    public void setMana(int mana) {
-        this.mana = mana;
+    public boolean setMana(int mana) {
+        if (this.mana + mana > maxMana)
+        {
+            this.mana = mana;
+            return true;
+        }
+        return false;
     }
 
     public int getCoins() {
@@ -99,7 +113,15 @@ public class Player {
         return curentRoom;
     }
 
-    public void setCurentRoom(Room curentRoom) {
+    public void setMaxHp(int maxHp) {
+        this.maxHp = maxHp;
+    }
+
+    public void setMaxMana(int maxMana) {
+        this.maxMana = maxMana;
+    }
+
+    public void setCurrentRoom(Room curentRoom) {
         this.curentRoom = curentRoom;
     }
 

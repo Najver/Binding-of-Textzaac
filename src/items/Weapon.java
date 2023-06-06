@@ -26,6 +26,14 @@ public class Weapon extends Item{
         return ap;
     }
 
+    public int getBonusHp() {
+        return bonusHp;
+    }
+
+    public int getBonusMana() {
+        return bonusMana;
+    }
+
     @Override
     public String toString() {
         return name +": ad:" + ad + ", ap:" + ap + ", bonusMana:" + bonusMana + ", bonusHp:" + bonusHp;

@@ -24,7 +24,7 @@ public class MovementAction implements CommandActions{
             return false;
         }
         int[] currentRoomIndices = player.getCurentRoom().getIndices();
-        player.setCurentRoom(mapLevel.getRooms()
+        player.setCurrentRoom(mapLevel.getRooms()
                             [currentRoomIndices[0] + movementDirection.translateX]
                             [currentRoomIndices[1] + movementDirection.translateY]);
         mapLevel.setPlayerCurrentCoordinates(currentRoomIndices[0] + movementDirection.translateX,

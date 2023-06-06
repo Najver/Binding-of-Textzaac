@@ -77,7 +77,7 @@ public class Console {
         System.out.println("You have moved to the next room");
         MapLevel newMap = game.getAllLevels().get(game.getCurrentActiveMap());
         showMap(newMap);
-        player.setCurentRoom(newMap.getSpawn());
+        player.setCurrentRoom(newMap.getSpawn());
     }
 
     public static Map<String, CommandActions> getCommands() {
