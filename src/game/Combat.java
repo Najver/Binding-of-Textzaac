@@ -6,10 +6,12 @@ import game.comandmanager.combat.AttackAction;
 import game.comandmanager.combat.CombatAction;
 import game.comandmanager.combat.UseConsumableAction;
 import items.Weapon;
+import util.ConsoleColors;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+
 
 public class Combat {
 
@@ -25,8 +27,8 @@ public class Combat {
 
     public static boolean startCombat(Player player, Entity enemy)
     {
-        System.out.println("Welcome to the cumbat\n\nRules are simple, you attack, then your opponent attacks, until one of you dies. Fight!");
-        System.out.println("You are fighting against " + enemy.getName());
+        System.out.println(ConsoleColors.RED + "Welcome to the cumbat\n\nRules are simple, you attack, then your opponent attacks, until one of you dies. Fight!" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.RED + "You are fighting against " + enemy.getName() + ConsoleColors.RESET);
         return proceedCombat(player, enemy);
     }
 
@@ -41,8 +43,16 @@ public class Combat {
             System.out.println("What do you do?\nYou have this consumables: " + player.getAllPlayersConsumables() +
                     "\nYour damage is: AD = " + playerADamage + ", AP = " + playerAPDamage);
             processCommand(player, enemy, playerADamage, playerAPDamage);
+            enemyAttack(player, enemy);
         }
         return player.getHp() > 0;
+    }
+
+    private static void enemyAttack(Player player, Entity enemy) {
+        int enemyDmg = enemy.getDamage();
+        int playerCurrentHealth = player.getHp();
+        player.setHp(playerCurrentHealth - enemyDmg);
+        System.out.println(ConsoleColors.RED + "Enemy dealt you " + enemyDmg + "and left you with " + player.getHp() + ConsoleColors.RESET);
     }
 
     private static void processCommand(Player player, Entity enemy, int playerADDamage, int playerAPDamage) {
