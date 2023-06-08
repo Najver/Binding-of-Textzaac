@@ -30,17 +30,22 @@ public class Console {
         commands.put("go", new MovementAction());
     }
 
+    /**
+     * this is where the player can play the game and has few commands to play with
+     */
     public void startGame(Game game) {
         System.out.println("Welcome to the game! You are at spawn, where you want to move? \n");
         int currentActiveMapIndex = game.getCurrentActiveMap();
         showMap(game.getAllLevels().get(currentActiveMapIndex));
         System.out.println("You are currently at: " + game.getPlayer().getCurentRoom());
+        System.out.println("You found this:" + game.getPlayer().getCurentRoom().getItems());
         while (game.getAllLevels().get(currentActiveMapIndex).isBossAlive())
         {
             currentActiveMapIndex = game.getCurrentActiveMap();
             buffer = scanner.nextLine();
             processCommand(buffer, game.getAllLevels().get(currentActiveMapIndex), game.getPlayer());
             System.out.println("You are currently at: " + game.getPlayer().getCurentRoom());
+            System.out.println("You found this:" + game.getPlayer().getCurentRoom().getItems());
             buffer = "";
             if (game.getPlayer().getCurentRoom() instanceof Shop)
                 game.getAllLevels().get(currentActiveMapIndex).openShop(game.getPlayer(), (Shop) game.getPlayer().getCurentRoom());
@@ -71,6 +76,10 @@ public class Console {
     {
         mapLevel.printMap();
     }
+
+    /**
+     *moving through the map
+     */
 
     private void moveToNextRoom(Game game, Player player, int currentIndex) {
         game.setCurrentActiveMap(currentIndex + 1);

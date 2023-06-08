@@ -27,18 +27,6 @@ public class Game {
         this.currentActiveMap = 0;
         this.console = new Console();
         this.player = new Player(nameOfThePlayer, allLevels.get(currentActiveMap));
-        player.getPlayerInventory().add(ConsumablesCSVDatabase.getConsumable().get(0));
-        player.getPlayerInventory().add(ConsumablesCSVDatabase.getConsumable().get(1));
-        player.getPlayerInventory().add(ConsumablesCSVDatabase.getConsumable().get(2));
-        player.getPlayerInventory().add(ConsumablesCSVDatabase.getConsumable().get(3));
-        player.getPlayerInventory().add(ConsumablesCSVDatabase.getConsumable().get(4));
-        player.getPlayerInventory().add(ConsumablesCSVDatabase.getConsumable().get(5));
-        player.getPlayerInventory().add(ConsumablesCSVDatabase.getConsumable().get(6));
-
-        player.getPlayerInventory().add(WeaponCSVDatabase.getWeapons().get(0));
-        player.getPlayerInventory().add(WeaponCSVDatabase.getWeapons().get(3));
-        player.getPlayerInventory().add(WeaponCSVDatabase.getWeapons().get(5));
-
     }
 
     public void startGame()

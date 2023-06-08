@@ -37,6 +37,11 @@ public class Shop extends Room{
         items = new Item[]{itemWeapon, itemConsumable, itemSpecial};
     }
 
+    /**
+     *
+     * @param player
+     */
+
     public void openShop(Player player){
         this.player = player;
         System.out.println("Hello i have 3 items you can buy");

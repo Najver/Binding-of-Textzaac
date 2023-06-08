@@ -26,7 +26,7 @@ public class Player {
         this.mana = 50;
         this.maxHp = 100;
         this.maxMana = 50;
-        this.coins = 30;            // sebrat
+        this.coins = 0;
         this.playerInventory = new ArrayList<>();
         this.curentRoom = level.getSpawn();
     }

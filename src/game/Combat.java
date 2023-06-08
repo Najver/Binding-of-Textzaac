@@ -25,12 +25,20 @@ public class Combat {
         combatActionMap.put("attack", new AttackAction());
     }
 
+    /**
+     * First massage so you know you are fighting
+     * @return whether player has won the battle
+     */
     public static boolean startCombat(Player player, Entity enemy)
     {
-        System.out.println(ConsoleColors.RED + "Welcome to the cumbat\n\nRules are simple, you attack, then your opponent attacks, until one of you dies. Fight!" + ConsoleColors.RESET);
-        System.out.println(ConsoleColors.RED + "You are fighting against " + enemy.getName() + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.RED.colorCode + "Welcome to the cumbat\n\nRules are simple, you attack, then your opponent attacks, until one of you dies. Fight!" + ConsoleColors.RESET.colorCode);
+        System.out.println(ConsoleColors.RED.colorCode + "You are fighting against " + enemy.getName() + ConsoleColors.RESET.colorCode);
         return proceedCombat(player, enemy);
     }
+
+    /**
+     * combat between player and enemy
+     */
 
     private static boolean proceedCombat(Player player, Entity enemy) {
         int playerADamage = 10 + countRemainingDamage(player, 0);
@@ -48,11 +56,17 @@ public class Combat {
         return player.getHp() > 0;
     }
 
+    /**
+     * method for enemy attack
+     */
+
+
+
     private static void enemyAttack(Player player, Entity enemy) {
         int enemyDmg = enemy.getDamage();
         int playerCurrentHealth = player.getHp();
         player.setHp(playerCurrentHealth - enemyDmg);
-        System.out.println(ConsoleColors.RED + "Enemy dealt you " + enemyDmg + "and left you with " + player.getHp() + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.RED.colorCode + "Enemy dealt you " + enemyDmg + "and left you with " + player.getHp() + ConsoleColors.RESET.colorCode);
     }
 
     private static void processCommand(Player player, Entity enemy, int playerADDamage, int playerAPDamage) {

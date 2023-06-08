@@ -6,7 +6,14 @@ import items.Consumable;
 
 public class UseConsumableAction implements CombatAction{
 
-
+    /**
+     * you consume a consumable item
+     * @param parameter
+     * @param player
+     * @param entity
+     * @param ad = attack damage
+     * @param ap = ability damage
+     */
     @Override
     public void execute(String parameter, Player player, Entity entity, int ad, int ap)
     {

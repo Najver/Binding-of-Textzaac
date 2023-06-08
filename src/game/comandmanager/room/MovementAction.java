@@ -16,6 +16,14 @@ public class MovementAction implements CommandActions{
             System.out.println("Has moved to another room");
     }
 
+    /**
+     * checks if player can move to this direction
+     * @param mapLevel
+     * @param player
+     * @param movementDirection
+     * @return boolean if player can move to this direction
+     */
+
     private boolean translateToAnotherRoom(MapLevel mapLevel, Player player, Movement movementDirection)
     {
         if (!canMoveInDirection(mapLevel, player, movementDirection))

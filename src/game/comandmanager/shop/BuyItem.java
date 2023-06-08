@@ -6,7 +6,13 @@ import structure.room.Shop;
 
 
 public class BuyItem implements ShopAction {
-
+    /**
+     * method for buying items from shop
+     * @param itemIndex
+     * @param player
+     * @param shop
+     * @return
+     */
     @Override
     public boolean execute(int itemIndex, Player player, Shop shop){
         Item boughtItem = shop.getShopItems()[itemIndex];

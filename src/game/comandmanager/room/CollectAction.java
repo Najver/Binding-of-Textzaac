@@ -5,6 +5,12 @@ import characters.Player;
 import structure.MapLevel;
 
 public class CollectAction implements CommandActions {
+    /**
+     * you collect item
+     * @param parameter
+     * @param player
+     * @param mapLevel
+     */
     @Override
     public void execute(String parameter, Player player, MapLevel mapLevel) {
         for (Item item : player.getCurentRoom().getItems()) {
