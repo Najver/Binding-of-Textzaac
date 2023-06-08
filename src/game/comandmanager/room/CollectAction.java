@@ -4,6 +4,9 @@ import items.Item;
 import characters.Player;
 import structure.MapLevel;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CollectAction implements CommandActions {
     /**
      * you collect item
@@ -13,10 +16,13 @@ public class CollectAction implements CommandActions {
      */
     @Override
     public void execute(String parameter, Player player, MapLevel mapLevel) {
-        for (Item item : player.getCurentRoom().getItems()) {
-            if(item.getName().equals(parameter)){
-                player.getPlayerInventory().add(item); //Capsule
-                player.getCurentRoom().getItems().remove(item);
+        int sizeOfItems = player.getCurentRoom().getItems().size();
+        List<Item> currentRoomItems = player.getCurentRoom().getItems();
+        for (int i = 0; i < sizeOfItems; i++) {
+            Item currentItem = currentRoomItems.get(i);
+            if(currentItem.getName().equals(parameter)){
+                player.getPlayerInventory().add(currentItem); //Capsule
+                currentRoomItems.remove(currentItem);
                 return;
             }
         }

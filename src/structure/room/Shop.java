@@ -24,6 +24,7 @@ public class Shop extends Room{
 
     public Shop(String name, int x, int y) {
         super(name, x, y);
+        super.enemy = null;
         this.map = new HashMap<>();
         map.put("buy",new BuyItem());
         this.random = new Random();

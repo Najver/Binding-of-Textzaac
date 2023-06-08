@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Room {
-    private Entity enemy;
+    protected Entity enemy;
 
     private List<Item> items;
 
@@ -50,6 +50,8 @@ public class Room {
 
     @Override
     public String toString() {
+        if (enemy != null)
+            return name + "☠";
         return name;
     }
 

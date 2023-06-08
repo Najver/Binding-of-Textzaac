@@ -4,6 +4,15 @@ import characters.Entity;
 import characters.Player;
 
 public class AttackAction implements CombatAction{
+
+    /**
+     * you attack opponent with 2 different attacks
+     * @param parameter
+     * @param player
+     * @param entity
+     * @param ad = attack damage
+     * @param ap = ability damage
+     */
     @Override
     public void execute(String parameter, Player player, Entity entity, int ad, int ap) {
         if (parameter.equalsIgnoreCase("ad"))

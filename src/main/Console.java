@@ -1,5 +1,6 @@
 package main;
 
+import characters.Entity;
 import characters.Player;
 import game.comandmanager.room.CollectAction;
 import game.comandmanager.room.CommandActions;
@@ -7,6 +8,7 @@ import game.comandmanager.room.MovementAction;
 import structure.MapLevel;
 import structure.room.BossRoom;
 import structure.room.Shop;
+import structure.room.Room;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -42,21 +44,33 @@ public class Console {
         while (game.getAllLevels().get(currentActiveMapIndex).isBossAlive())
         {
             currentActiveMapIndex = game.getCurrentActiveMap();
+
+
             buffer = scanner.nextLine();
             processCommand(buffer, game.getAllLevels().get(currentActiveMapIndex), game.getPlayer());
             System.out.println("You are currently at: " + game.getPlayer().getCurentRoom());
             System.out.println("You found this:" + game.getPlayer().getCurentRoom().getItems());
             buffer = "";
+
             if (game.getPlayer().getCurentRoom() instanceof Shop)
                 game.getAllLevels().get(currentActiveMapIndex).openShop(game.getPlayer(), (Shop) game.getPlayer().getCurentRoom());
             if (game.getPlayer().getCurentRoom() instanceof BossRoom && game.getAllLevels().get(currentActiveMapIndex).isBossAlive())
             {
-                boolean playerWon = game.getAllLevels().get(currentActiveMapIndex).startBossFight(game.getPlayer(), game.getPlayer().getCurentRoom().getEnemy());
+                boolean playerWon = game.getAllLevels().get(currentActiveMapIndex).startFight(game.getPlayer(), game.getPlayer().getCurentRoom().getEnemy());
                 if (playerWon) {
-                    moveToNextRoom(game, game.getPlayer(),currentActiveMapIndex);
+                    game.getAllLevels().get(currentActiveMapIndex).setBossAlive(false);
+                    System.out.println("This was the boss of this map, you can now move on!");
+                    moveToNextRoom(game, game.getPlayer(), currentActiveMapIndex);
                     currentActiveMapIndex += 1;
                 }
-
+            }
+            if (game.getPlayer().getCurentRoom().getEnemy() != null) {
+                Entity entity = game.getPlayer().getCurentRoom().getEnemy();
+                boolean playerWon = game.getAllLevels().get(currentActiveMapIndex).startFight(game.getPlayer(), entity);
+                if (playerWon)
+                    game.getPlayer().setCoins(game.getPlayer().getCoins() + entity.getDropCoins());
+                else
+                    System.err.println("You died...");
             }
         }
     }

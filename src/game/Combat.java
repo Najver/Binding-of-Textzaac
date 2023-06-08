@@ -8,6 +8,7 @@ import game.comandmanager.combat.UseConsumableAction;
 import items.Weapon;
 import util.ConsoleColors;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -41,12 +42,13 @@ public class Combat {
      */
 
     private static boolean proceedCombat(Player player, Entity enemy) {
-        int playerADamage = 10 + countRemainingDamage(player, 0);
-        int playerAPDamage = countRemainingDamage(player, 1);
-        player.setMaxHp(countRemainingBonus(player)[0]);
-        player.setMaxMana(countRemainingBonus(player)[1]);
+        int playerADamage;
+        int playerAPDamage;
+        countRemainingBonus(player);
         while (player.getHp() > 0 && enemy.getHp() > 0)
         {
+            playerADamage = 10 + countRemainingDamage(player, 0);
+            playerAPDamage = countRemainingDamage(player, 1);
             System.out.println("You have " + player.getHp());
             System.out.println("What do you do?\nYou have this consumables: " + player.getAllPlayersConsumables() +
                     "\nYour damage is: AD = " + playerADamage + ", AP = " + playerAPDamage);
@@ -90,19 +92,22 @@ public class Combat {
             else
                 additionalDamage += weapon.getAp();
         }
+        System.out.println(additionalDamage);
         return additionalDamage;
     }
 
-    private static int[] countRemainingBonus(Player player)
+    private static void countRemainingBonus(Player player)
     {
-        int[] bonus = {0, 0};
         for (Weapon weapon : player.getAllPlayersWeapons()) {
-            bonus[0] += weapon.getBonusHp();
-            bonus[1] += weapon.getBonusMana();
-            player.setHp(player.getHp() + weapon.getBonusHp());
-            player.setMana(player.getMana() + weapon.getBonusMana());
+            int hpBonus = weapon.getBonusHp();
+            int manaBonus = weapon.getBonusMana();
+
+            player.setMaxHp(player.getHp() + hpBonus);
+            player.setHp(player.getHp() + hpBonus);
+
+            player.setMaxMana(player.getMana() + manaBonus);
+            player.setMana(player.getMana() + manaBonus);
         }
-        return bonus;
     }
 
 }

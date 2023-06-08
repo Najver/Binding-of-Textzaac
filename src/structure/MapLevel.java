@@ -90,19 +90,17 @@ public class MapLevel {
 
     public void printMap(){
         StringBuilder builder = new StringBuilder();
-        for (Room[] room : rooms) {
+        for (Room[] room : rooms)
             builder.append(Arrays.toString(room)).append("\n");
-        }
         System.out.println(builder);
     }
 
-    public boolean startBossFight(Player player, Entity enemy)
+    public boolean startFight(Player player, Entity enemy)
     {
         boolean hasPlayerWon = Combat.startCombat(player, enemy);
         if (hasPlayerWon)
         {
-            isBossAlive = false;
-            System.out.println("You have defeated this boss! You can move to next map!");
+            System.out.println("You have defeated this enemy!");
             return true;
         }
         System.out.println("You have died, you have to start over :(");
@@ -144,5 +142,9 @@ public class MapLevel {
 
     public boolean isBossAlive() {
         return isBossAlive;
+    }
+
+    public void setBossAlive(boolean bossAlive) {
+        isBossAlive = bossAlive;
     }
 }

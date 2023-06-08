@@ -36,12 +36,10 @@ public class Player {
     }
 
     public boolean setHp(int hp) {
-        if (!(this.hp + hp >= maxHp))
-        {
-            this.hp = hp;
-            return true;
-        }
-        return false;
+        if (hp > maxHp)
+            return false;
+        this.hp = hp;
+        return true;
     }
 
     public int getMana() {
@@ -49,12 +47,10 @@ public class Player {
     }
 
     public boolean setMana(int mana) {
-        if (this.mana + mana > maxMana)
-        {
-            this.mana = mana;
+        if (mana > maxMana)
             return true;
-        }
-        return false;
+        this.mana = mana;
+        return true;
     }
 
     public int getCoins() {
@@ -73,6 +69,11 @@ public class Player {
         return playerInventory;
     }
 
+    /**
+     *
+     * @return you get all weapons from players inventory
+     */
+
     public ArrayList<Weapon> getAllPlayersWeapons()
     {
         ArrayList<Weapon> weapons = new ArrayList<>();
@@ -86,6 +87,11 @@ public class Player {
         }
         return weapons;
     }
+
+    /**
+     *
+     * @return you get all consumables from players inventory
+     */
 
     public ArrayList<Consumable> getAllPlayersConsumables()
     {
@@ -119,6 +125,14 @@ public class Player {
 
     public void setMaxMana(int maxMana) {
         this.maxMana = maxMana;
+    }
+
+    public int getMaxMana() {
+        return maxMana;
+    }
+
+    public int getMaxHp() {
+        return maxHp;
     }
 
     public void setCurrentRoom(Room curentRoom) {
